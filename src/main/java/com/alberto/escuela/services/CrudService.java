@@ -2,6 +2,7 @@ package com.alberto.escuela.services;
 
 import java.util.List;
 
+
 public interface CrudService<RQ, RS> {
 
 List<RS> listar();

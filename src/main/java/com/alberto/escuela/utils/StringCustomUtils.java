@@ -34,4 +34,14 @@ public  static String localDateAString(LocalDate fecha){
         return fecha==null ? null : fecha.format(formato);
 }
 
+/*public static void validaEmail(String email,Integer min, Integer max, String mensaje) {
+
+    validarTamanio(email, min, max, mensaje);
+
+    if (!email.contains("@"))
+        throw new IllegalArgumentException("El email no es valido");
+
+}*/
+
+
 }
