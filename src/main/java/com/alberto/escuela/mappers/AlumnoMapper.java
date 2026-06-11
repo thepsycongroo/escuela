@@ -6,6 +6,7 @@ import com.alberto.escuela.dto.datos.DatosAlumno;
 import com.alberto.escuela.dto.datos.DatosCalificaciones;
 import com.alberto.escuela.entities.Alumno;
 import com.alberto.escuela.entities.Calificacion;
+import com.alberto.escuela.entities.Inscripcion;
 import com.alberto.escuela.utils.StringCustomUtils;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -44,7 +45,10 @@ public class AlumnoMapper implements CommonMapper<AlumnoRequest, AlumnoResponse,
     private List<DatosCalificaciones> entidadADatosCalificaciones(Alumno entidad){
         if (entidad == null) return null;
 
-        return entidad.getInscripciones().stream().map(inscripcion->entidadADatosCalificaciones(inscripcion.getCalificacion())).toList();
+        return entidad.getInscripciones().stream()
+                .map(inscripcion->new DatosCalificaciones(inscripcion.getGrupo().getCurso().getNombre(),
+                        inscripcion.getGrupo().getPeriodo(),(inscripcion.getCalificacion()==null)? null: inscripcion.getCalificacion().getCalificacion() ))
+                .toList();
     }
 
     public DatosAlumno entidadADatosAlumno(Alumno entidad){
@@ -53,12 +57,18 @@ public class AlumnoMapper implements CommonMapper<AlumnoRequest, AlumnoResponse,
     }
 
 
-    private DatosCalificaciones entidadADatosCalificaciones(Calificacion entidad){
+    /*private DatosCalificaciones entidadADatosCalificaciones(Calificacion entidad){
         if (entidad==null) return null;
         return new DatosCalificaciones(entidad.getInscripcion().getGrupo().getCurso().getNombre(),
                 entidad.getInscripcion().getGrupo().getPeriodo(),
                 entidad.getCalificacion());
-    }
+    }*/
+    /*private DatosCalificaciones entidadADatosCalificaciones(Calificacion entidad){
+        if (entidad==null) return null;
+        return new DatosCalificaciones(entidad.getInscripcion().getGrupo().getCurso().getNombre(),
+                entidad.getInscripcion().getGrupo().getPeriodo(),
+                entidad.getCalificacion());
+    }*/
 
 
 

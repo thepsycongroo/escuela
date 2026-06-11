@@ -10,11 +10,9 @@ import java.util.List;
 
 public record CalificacionRequest(
     @NotNull(message = "La inscripción es requerida")
-    @Positive(message = "El id inscripción debe ser positivo")
     Long idInscripcion,
-
     @NotNull(message = "La calificación es requerida")
-    @DecimalMin(value = "1.00", message = "La calificación mínima es 1")
+    @DecimalMin(value = "0.10", message = "La calificación mínima es 0.1")
     @DecimalMax(value = "10.00", message = "La calificación máxima es 10")
     BigDecimal calificacion
 ) {

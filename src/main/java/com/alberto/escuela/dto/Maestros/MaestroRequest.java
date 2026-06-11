@@ -20,7 +20,7 @@ public record MaestroRequest(
         @Email(message = "El email debe tener un formato valido (ejemplo@dominio.com)")
         String email,
         @NotBlank(message = "El telefono es requerido")
-        @Size(min = 4,max = 50, message = "El telefono debe tener de 4 a 50 caracteres")
-        @Pattern(regexp = "^[0-9]{10}$",message = "El formato de telefono es invalido")
+        @Size(min = 10,max = 10, message = "El telefono debe tener de 10 caracteres")
+        @Pattern(regexp = "^[0-9]{10}$",message = "El formato de telefono es invalido (ejemplo 1234567890)")
         String telefono) {
 }
