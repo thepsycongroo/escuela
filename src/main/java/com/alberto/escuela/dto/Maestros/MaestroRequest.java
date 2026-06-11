@@ -7,7 +7,7 @@ import jakarta.validation.constraints.Size;
 
 public record MaestroRequest(
         @NotBlank(message = "El nombre es reuqerido")
-        @Size(min = 4,max = 50, message = "El nombre debe tener de 4 a 50 caracteres")
+        @Size(min = 3,max = 50, message = "El nombre debe tener de 3 a 50 caracteres")
         String nombre,
         @NotBlank(message = "El apellido paterno es reuqerido")
         @Size(min = 4,max = 50, message = "El apellido paterno debe tener de 4 a 50 caracteres")

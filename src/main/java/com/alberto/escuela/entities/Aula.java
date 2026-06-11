@@ -22,7 +22,7 @@ public class Aula {
     private Long idAula;
 
     @Column(name = "NOMBRE", nullable = false, length = 30)
-    @Size(min = 4, max = 30, message = "El nombre debe tener de 4 a 30 caracteres")
+    //@Size(min = 4, max = 30, message = "El nombre debe tener de 4 a 30 caracteres")
     private String nombre;
 
     @Column(name = "CAPACIDAD", nullable = false, length = 4)

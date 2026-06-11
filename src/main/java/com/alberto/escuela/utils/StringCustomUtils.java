@@ -42,7 +42,7 @@ private static LocalTime StringALocalTime(String hora){
 
 public static void validaHoraInicioFin(String horaInicio, String horaFin){
     if (StringALocalTime(horaInicio).isAfter(StringALocalTime(horaFin)))
-        throw new IllegalArgumentException("La hor inicio no puede ser mayor a la hora final");
+        throw new IllegalArgumentException("La hora  inicio no puede ser mayor a la hora final");
 }
 
     public static void validaHoraSuperpuestas(

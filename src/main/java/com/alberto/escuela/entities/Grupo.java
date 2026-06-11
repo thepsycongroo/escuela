@@ -22,7 +22,7 @@ public class Grupo {
     private Long idGrupo;
 
     @Column(name = "PERIODO", nullable = false, length = 20)
-    @Size(min = 1, max = 20,message = "El periodo debe tener de 1 a 20 caracteres")
+    //@Size(min = 1, max = 20,message = "El periodo debe tener de 1 a 20 caracteres")
     private String periodo;
 
 

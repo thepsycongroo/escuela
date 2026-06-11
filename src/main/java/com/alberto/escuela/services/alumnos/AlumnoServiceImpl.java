@@ -61,8 +61,7 @@ public class AlumnoServiceImpl implements AlumnoService{
                 request.apellidoPaterno(),
                 request.apellidoMaterno(),
                 email,
-                matricula,
-                LocalDate.now()
+                matricula
                 );
         return alumnoMapper.entidadResponse(alumno);
     }

@@ -62,7 +62,7 @@ public class Maestro {
     }
 
     private void validarDatos(String nombre,String apellidoPaterno, String apellidoMaterno, String email, String telefono){
-        StringCustomUtils.validarTamanio(nombre.trim(),4,50, "El nombre es requerido y debe tener de 4 a 50 caracteres");
+        StringCustomUtils.validarTamanio(nombre.trim(),3,50, "El nombre es requerido y debe tener de 4 a 50 caracteres");
         StringCustomUtils.validarTamanio(apellidoPaterno.trim(),4,50, "El apellido paterno es requerido y debe tener de 4 a 50 caracteres");
         StringCustomUtils.validarTamanio(apellidoMaterno.trim(),4,50, "El apellido materno es requerido y debe tener de 4 a 50 caracteres");
         StringCustomUtils.validarTamanio(email.trim(),8,100, "El email es requerido y debe tener de 8 a 100 caracteres");
