@@ -23,5 +23,13 @@ public class ValoresNumericosUtils
             throw new IllegalArgumentException(mensaje);
     }
 
+    public static void validaLongPositivo(Long numero,String mensaje){
+        validarNumeroRequerido(numero);
+
+        if (numero<0)
+            throw new IllegalArgumentException(mensaje);
+
+    }
+
 
 }

@@ -6,6 +6,8 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,21 +50,56 @@ public class Alumno {
     private List<Inscripcion> inscripciones = new ArrayList<>();
 
     public void actualizar(String nombre,String apellidoPaterno,String apellidoMaterno,String email,String matricula,LocalDate fechaIngreso){
-        StringCustomUtils.validarTamanio(nombre,4,50,"El nombre es requerido y debe tener de 4 a 50 caracteres");
-        StringCustomUtils.validarTamanio(apellidoPaterno,5,50,"El apellido paterno es requerido y debe tener de 5 a 50 caracteres");
-        StringCustomUtils.validarTamanio(apellidoMaterno,5,50,"El apellido materno es requerido y debe tener de 5 a 50 caracteres");
-        StringCustomUtils.validarTamanio(email,1,100,"El email es requerido y debe tener de 1 a 100 caracteres");
-        StringCustomUtils.validarTamanio(matricula,10,10,"El matricula es requerido y debe tener 10 caracteres");
-        ;
 
+        validaDatos(nombre.trim(),
+                apellidoPaterno.trim(),
+                apellidoMaterno.trim(),
+                email.trim(),
+                matricula.trim(),
+                fechaIngreso);
 
+        if (validaCambioDatos(nombre,apellidoPaterno,apellidoMaterno)){
+            this.email = email.trim();
+            this.matricula = matricula.trim();
+            this.fechaIngreso = fechaIngreso;
+        }
         this.nombre = nombre.trim();
         this.apellidoPaterno = apellidoPaterno.trim();
         this.apellidoMaterno = apellidoMaterno.trim();
-        this.email = email.trim();
-        this.matricula = matricula.trim();
-        this.fechaIngreso = fechaIngreso;
     }
 
+    public BigDecimal calculaTotalCalificacion(){
+        Long totalCalificaciones =this.inscripciones.stream()
+                .filter(i->i.getCalificacion() != null &&i.getCalificacion().getCalificacion() != null)
+                .count();
 
+        BigDecimal suma=
+                this.inscripciones.stream()
+                        .filter(i->i.getCalificacion() != null &&i.getCalificacion().getCalificacion() != null)
+                        .map(i->i.getCalificacion().getCalificacion())
+                        .reduce(BigDecimal.ZERO, BigDecimal::add);
+
+        BigDecimal promedio = totalCalificaciones == 0
+                ?  BigDecimal.ZERO.setScale(2, RoundingMode.CEILING)
+                : suma.divide(
+                BigDecimal.valueOf(totalCalificaciones),
+                2, RoundingMode.CEILING);
+        return promedio;
+    }
+
+    private void validaDatos(String nombre,String apellidoPaterno,String apellidoMaterno,String email,String matricula,LocalDate fechaIngreso) {
+        StringCustomUtils.validarTamanio(nombre, 4, 50, "El nombre es requerido y debe tener de 4 a 50 caracteres");
+        StringCustomUtils.validarTamanio(apellidoPaterno, 5, 50, "El apellido paterno es requerido y debe tener de 5 a 50 caracteres");
+        StringCustomUtils.validarTamanio(apellidoMaterno, 5, 50, "El apellido materno es requerido y debe tener de 5 a 50 caracteres");
+        StringCustomUtils.validarTamanio(email, 1, 100, "El email es requerido y debe tener de 1 a 100 caracteres");
+        StringCustomUtils.validarTamanio(matricula, 10, 10, "El matricula es requerido y debe tener 10 caracteres");
+    }
+
+    private boolean validaCambioDatos(String nombre, String apellidoPaterno, String apellidoMaterno){
+
+        return !this.nombre.equalsIgnoreCase(nombre.trim())
+                || !this.apellidoPaterno.equalsIgnoreCase(apellidoPaterno.trim())
+                || !this.apellidoMaterno.equalsIgnoreCase(apellidoMaterno.trim());
+
+    }
 }

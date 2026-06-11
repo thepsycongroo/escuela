@@ -2,6 +2,7 @@ package com.alberto.escuela.emuns;
 
 import com.alberto.escuela.exceptions.RecursoNoEncontradoException;
 import com.alberto.escuela.utils.StringCustomUtils;
+import com.fasterxml.jackson.annotation.JsonCreator;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -17,14 +18,33 @@ public enum DiaSemana {
 
     private final String descripcion;
 
-    public static DiaSemana obtenerDiaSemanaPorDescripcion(String descripcion){
-        StringCustomUtils.validarNoVacio(descripcion,"La descripcion es requerida");
-        String descripcionNormalizada = StringCustomUtils.quitarAcentos(descripcion.trim());
+    @JsonCreator
+    public static DiaSemana from(String descripcion) {
+        return obtenerDiaSemanaPorDescripcion(descripcion);
+    }
+
+    public static DiaSemana obtenerDiaSemanaPorDescripcion(String descripcion) {
+
+        StringCustomUtils.validarNoVacio(
+                descripcion,
+                "La descripcion es requerida"
+        );
+
+        String descripcionNormalizada =
+                StringCustomUtils.quitarAcentos(descripcion.trim());
 
         for (DiaSemana diaSemana : values()) {
-            if (StringCustomUtils.quitarAcentos(diaSemana.descripcion).equalsIgnoreCase(descripcionNormalizada)) ;
-            return diaSemana;
+
+            if (StringCustomUtils.quitarAcentos(diaSemana.descripcion)
+                    .equalsIgnoreCase(descripcionNormalizada)) {
+
+                return diaSemana;
+            }
         }
-        throw new RecursoNoEncontradoException("No existe un estado venta con la descripcion: "+ descripcion);
+
+        throw new RecursoNoEncontradoException(
+                "No existe un día de la semana con la descripción: "
+                        + descripcion
+        );
     }
 }

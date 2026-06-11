@@ -24,7 +24,7 @@ public class Curso {
     @Size(min = 4,max = 50,message = "El nombre debe tener de 4 a 50 caracteres")
     private String nombre;
     @Column(name = "DESCRIPCION", length = 200)
-    @Size(min = 4, max = 200,message = "la descripcion debe tener de 4 a 200 caracteres")
+    @Size(max = 200,message = "la descripcion debe tener maximo 200 caracteres")
     private String descripcion;
     @Column(name = "CREDITOS", nullable = false)
     private Integer creditos;

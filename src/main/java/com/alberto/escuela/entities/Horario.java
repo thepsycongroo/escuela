@@ -30,4 +30,9 @@ public class Horario {
 
 
 
+    public void actualizar(DiaSemana dia, String horaInicio, String horaFin){
+        this.dia = dia;
+        this.horaInicio = horaInicio.trim();
+        this.horaFin= horaFin.trim();
+    }
 }

@@ -33,10 +33,10 @@ public class Aula {
     private List<Grupo> grupos = new ArrayList<>();
 
     public void actualizar(String nombre,Integer capacidad){
-        StringCustomUtils.validarTamanio(nombre,4,30,"El nombre es requerido y debe tener de 4 a 30 caracteres");
+        StringCustomUtils.validarTamanio(nombre.trim(),4,30,"El nombre es requerido y debe tener de 4 a 30 caracteres");
         ValoresNumericosUtils.validarEnteroPositivo(capacidad,"La capacidad debe ser positiva");
 
-        this.nombre = nombre;
+        this.nombre = nombre.trim();
         this.capacidad = capacidad;
         
     }

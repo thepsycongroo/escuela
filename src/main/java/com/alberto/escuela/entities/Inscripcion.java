@@ -32,8 +32,4 @@ public class Inscripcion {
     @OneToOne(mappedBy = "inscripcion", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Calificacion calificacion;
 
-
-    public void actualizar(LocalDate fechaInscripcion){
-        this.fechaInscripcion =fechaInscripcion;
-    }
 }

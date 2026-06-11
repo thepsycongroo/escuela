@@ -1,6 +1,7 @@
 package com.alberto.escuela.utils;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 public class StringCustomUtils {
@@ -33,6 +34,36 @@ public  static  String quitarAcentos(String texto){
 public  static String localDateAString(LocalDate fecha){
         return fecha==null ? null : fecha.format(formato);
 }
+
+private static LocalTime StringALocalTime(String hora){
+    DateTimeFormatter formato = DateTimeFormatter.ofPattern("HH:mm");
+        return LocalTime.parse(hora,formato);
+}
+
+public static void validaHoraInicioFin(String horaInicio, String horaFin){
+    if (StringALocalTime(horaInicio).isAfter(StringALocalTime(horaFin)))
+        throw new IllegalArgumentException("La hor inicio no puede ser mayor a la hora final");
+}
+
+    public static void validaHoraSuperpuestas(
+            String horaInicioNueva,
+            String horaFinNueva,
+            String horaInicioExistente,
+            String horaFinExistente
+    ) {
+        LocalTime inicioNuevo = StringALocalTime(horaInicioNueva);
+        LocalTime finNuevo = StringALocalTime(horaFinNueva);
+        LocalTime inicioExistente = StringALocalTime(horaInicioExistente);
+        LocalTime finExistente = StringALocalTime(horaFinExistente);
+
+        boolean seTraslapan =
+                inicioNuevo.isBefore(finExistente) &&
+                        finNuevo.isAfter(inicioExistente);
+
+        if (seTraslapan) {
+            throw new IllegalArgumentException("El horario se traslapa con otro horario");
+        }
+    }
 
 /*public static void validaEmail(String email,Integer min, Integer max, String mensaje) {
 

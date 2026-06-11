@@ -1,6 +1,7 @@
 package com.alberto.escuela.entities;
 
 import com.alberto.escuela.utils.StringCustomUtils;
+import com.alberto.escuela.utils.ValoresNumericosUtils;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.*;
@@ -13,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @Setter @Getter
-@Table(name = "GRUPOS",uniqueConstraints = @UniqueConstraint(columnNames = {"ID_CURSO","ID_MAESTRO","ID_AULA","PERIODO"},name ="GRUPO_CU_MA_AU_PE_UK" ))
+@Table(name = "GRUPOS",uniqueConstraints = @UniqueConstraint(columnNames = {"ID_CURSO","ID_MAESTRO","ID_AULA","PERIODO"}, name ="GRUPO_CU_MA_AU_PE_UK" ))
 public class Grupo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

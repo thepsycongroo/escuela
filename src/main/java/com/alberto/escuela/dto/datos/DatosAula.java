@@ -1,0 +1,7 @@
+package com.alberto.escuela.dto.datos;
+
+public record DatosAula(
+        String nombre,
+        Integer capacidad
+) {
+}
