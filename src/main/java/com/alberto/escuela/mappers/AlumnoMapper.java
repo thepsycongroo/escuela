@@ -53,7 +53,7 @@ public class AlumnoMapper implements CommonMapper<AlumnoRequest, AlumnoResponse,
 
     public DatosAlumno entidadADatosAlumno(Alumno entidad){
         if (entidad == null) return null;
-        return new DatosAlumno(entidad.getNombre(),entidad.getMatricula(),entidad.getEmail(), StringCustomUtils.localDateAString(entidad.getFechaIngreso()));
+        return new DatosAlumno(String.join(" ",entidad.getNombre(), entidad.getApellidoPaterno(), entidad.getApellidoMaterno()),entidad.getMatricula(),entidad.getEmail(), StringCustomUtils.localDateAString(entidad.getFechaIngreso()));
     }
 
 

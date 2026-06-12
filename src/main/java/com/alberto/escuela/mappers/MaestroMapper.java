@@ -54,7 +54,7 @@ public class MaestroMapper implements CommonMapper<MaestroRequest,MaestroRespons
     }
 
     public DatosMaestro entidadADatosMaestros(Maestro entidad){
-        return new DatosMaestro(entidad.getNombre(), entidad.getEmail(),entidad.getTelefono());
+        return new DatosMaestro(String.join(" ", entidad.getNombre(), entidad.getApellidoPaterno(), entidad.getApellidoMaterno()), entidad.getEmail(),entidad.getTelefono());
     }
 
 }

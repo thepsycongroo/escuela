@@ -61,7 +61,7 @@ public class GrupoMapper implements CommonMapper<GrupoRequest, GrupoResponse, Gr
     public DatosGrupo entidadADatosGrupo(Grupo grupo){
         if (grupo==null) return null;
 
-        return new DatosGrupo(grupo.getCurso().getNombre(),grupo.getMaestro().getNombre(),grupo.getAula().getNombre(),grupo.getPeriodo());
+        return new DatosGrupo(grupo.getCurso().getNombre(),String.join(" ",grupo.getMaestro().getNombre(),grupo.getMaestro().getApellidoPaterno(),grupo.getMaestro().getApellidoMaterno()),grupo.getAula().getNombre(),grupo.getPeriodo());
     }
 
 

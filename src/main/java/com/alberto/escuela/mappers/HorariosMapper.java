@@ -55,7 +55,7 @@ public class HorariosMapper implements CommonMapper<HorarioRequest, HorarioRespo
 
         return new DatosGrupo(
                 grupo.getCurso().getNombre(),
-                grupo.getMaestro().getNombre(),
+                String.join(" ",grupo.getMaestro().getNombre(),grupo.getMaestro().getApellidoPaterno(),grupo.getMaestro().getApellidoMaterno()),
                 grupo.getAula().getNombre(),
                 grupo.getPeriodo()
         );
